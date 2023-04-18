@@ -8,8 +8,18 @@ class conexion{
     private $con;
 
     public function __construct(){
-        $dsn = "mysql:dbname = $this -> $database; host = $this -> $host; user = $this -> $user; password = $this -> $password";
+        try {
+            $this ->con = new PDO("mysql:dbname = $this -> $database; host = $this -> $host", $this -> user, $this -> password);
+            $this -> con ->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+        } catch (PDOexception $e) {
+            echo "Hubo un Fallo en la Conexion " . $e->getMessage();
+        }
     }
+
+    public function getCon(){
+        return $this -> con;
+    }
+
 }
 
 ?>
