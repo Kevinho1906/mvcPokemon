@@ -52,4 +52,4 @@
 </div>
 <?php include_once "footer.php"; ?>
 <!-- incluimos el archivo roles.js -->
-<script src="../js/roles.js"></script>
+<!-- <script src="../js/roles.js"></script> -->
