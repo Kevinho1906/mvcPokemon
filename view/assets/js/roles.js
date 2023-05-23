@@ -1,7 +1,3 @@
-// $(document).ready(function () {
-//     $('#tableRol').DataTable();
-// });
-
 function create() {
 
     //Información del formulario
@@ -48,11 +44,57 @@ function read() {
                 table += `  <td>${element.fechaCreacion}</td>`
                 table += `  <td>
                                 <button class="btn btn-warning" tittle="Editar" type="button" data-bs-toggle="modal" data-bs-target="#updateModal" onclick="readId(${element.id})"><i class="fa fa-edit"></i></button>
-                                <button class="btn btn-danger" tittle="Eliminar"><i class="fa fa-trash"></i></button>
+                                <button class="btn btn-danger" tittle="Eliminar" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="deleteId(${element.id},'${element.nombreRol}')"><i class="fa fa-trash"></i></button>
                             </td>`
                 table += `</tr>`
             });
             document.getElementById('tableRol').innerHTML = table;
+            let tables = new DataTable('#rolesT',{
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
+                },
+                dom: "Bfrtip",
+                buttons: [
+                    {
+                        extend: 'copy',
+                        text: '<i class="fa fa-regular fa-copy"></i>',
+                        tittleAttr: 'Copiar',
+                        exportOptions: {
+                            columns: [0,1,2,3]
+                        },
+                        className: 'copyDataTable',
+                    }, 
+                    {
+                        extend: 'excel',
+                        text: '<i class="bi bi-file-earmark-excel"></i>',
+                        tittleAttr: 'EXCEL',
+                        exportOptions: {
+                            columns: [0,1,2,3]
+                        },
+                        className: 'excelDataTable'
+                    },
+                    {
+                        extend: 'pdf',
+                        text: '<i class="bi bi-file-earmark-pdf"></i>',
+                        tittleAttr: 'PDF',
+                        exportOptions: {
+                            columns: [0,1,2,3]
+                        },
+                        className: 'pdfDataTable',
+                        download: 'open'
+                    }, 
+                    {
+                        extend: 'print',
+                        text: '<i class="bi bi-printer"></i>',
+                        tittleAttr: 'print',
+                        exportOptions: {
+                            columns: [0,1,2,3]
+                        },
+                        className: 'printDataTable'
+                    },
+                ]
+            });
+            // cargarDataTable($("#rolesT"),"ROLES",4);
             localStorage.id = data[0].id;
         })
         .catch((error) => {
@@ -61,7 +103,7 @@ function read() {
 
 }
 
-function update() {
+function Update() {
 
     let nombreRol = document.getElementById("txtRolM").value;
     let id = localStorage.id;
@@ -87,9 +129,36 @@ function update() {
         })
 }
 
-function deletes() {
-
+function deleteId(id, nombreRol) {
+    document.getElementById("mensajeEliminar").innerHTML = `¿Está Seguro De Eliminar el Rol? "${nombreRol}"`
+    // let nombreRol = document.getElementById("txtRolMEliminar").value;
+    // let id = localStorage.id;
+    localStorage.id = id;
 }
+
+function Delete() {
+    let id = localStorage.id;
+
+    let data = `id=${id}`;
+
+    const options = {
+
+        method: 'POST',
+        body: data,
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+    };
+
+    fetch('../controller/roles.delete.php', options)
+        .then((response) => response.json())
+        .then((data) => {
+
+            console.log(data);
+            read();
+        })
+}
+
 
 function readId(id) {
     console.log(id);

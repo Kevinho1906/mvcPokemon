@@ -1,0 +1,14 @@
+.copyDataTable{
+    background-color: blue;
+}
+.excelDataTable{
+    background-color: green;
+}
+
+.pdfDataTable{
+    background-color: red;
+}
+
+.printDataTable{
+    background-color: orange;
+}

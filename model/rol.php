@@ -94,7 +94,25 @@ class Rol {
             $request->bindParam(2, $this->id);
             $request->execute();
 
-            return "Roles Modificado Exitosamnete...";
+            return "Rol Modificado Exitosamnete...";
+            
+        } catch (PDOException $e) {
+
+            return "Error" . $e->getMessage();
+
+        }
+
+    }
+
+    public function delete() {
+
+        try {
+
+            $request = $this->con->getCon()->prepare("DELETE FROM roles  WHERE id=?");
+            $request->bindParam(1, $this->id);
+            $request->execute();
+
+            return "Rol Eliminado Exitosamnete...";
             
         } catch (PDOException $e) {
 
