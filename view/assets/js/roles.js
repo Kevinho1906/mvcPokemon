@@ -1,3 +1,7 @@
+// $(document).ready(function () {
+//     $('#tableRol').DataTable();
+// });
+
 function create() {
 
     //Información del formulario
