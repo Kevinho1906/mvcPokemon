@@ -104,7 +104,7 @@ class Rol {
 
     }
 
-    public function delete() {
+    public function Deletes() {
 
         try {
 

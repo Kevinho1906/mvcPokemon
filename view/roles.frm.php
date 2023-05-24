@@ -9,15 +9,14 @@
     <label for="inputPassword" class="col-2 col-form-label align-self-center">Asignación Rol:</label>
     <div class="col-6">
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="txtRol" placeholder="Administrador">
+        <input type="text" class="form-control" id="txtRol" placeholder="Administrador" required>
         <label for="txtRol">Nombre Rol</label>
       </div>
     </div>
     <div class="row justify-content-center">
       <div class="col-5">
         <div class="d-grid grap-2">
-          <a class="btn btn-outline-success" onclick="create()">Crear <i
-              class="fas fa-sharp fa-light fa-circle-plus"></i></a>
+          <a class="btn btn-outline-success" onclick="create()">Crear <i class="bi bi-plus-circle"></i></a>
         </div>
       </div>
     </div>
@@ -75,13 +74,6 @@
             <div class="modal-body">
               <div class="row">
                   <h3 id="mensajeEliminar"></h3>
-                  <!-- <form action="">
-                    <label for="" class="">Eliminar Rol</label><br>
-                    <div class="form-floating mb-3">
-                      <input type="text" class="form-control" id="txtRolMEliminar" name="txtRolMEliminar" placeholder="Digite el rol" disabled>
-                      <label for="txtRolMEliminar">Nombre del Rol</label>
-                    </div>
-                  </form> -->
               </div>
             </div>
             <div class="modal-footer">

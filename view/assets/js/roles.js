@@ -130,9 +130,14 @@ function Update() {
 }
 
 function deleteId(id, nombreRol) {
-    document.getElementById("mensajeEliminar").innerHTML = `¿Está Seguro De Eliminar el Rol? "${nombreRol}"`
-    // let nombreRol = document.getElementById("txtRolMEliminar").value;
-    // let id = localStorage.id;
+    document.getElementById("mensajeEliminar").innerHTML = `¿Está Seguro De Eliminar el Rol? <br>
+    <form action="">
+        <label for="" class="">Nombre del Rol</label><br>
+        <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="txtRolMEliminar" name="txtRolMEliminar" placeholder="Digite el rol" disabled>
+        <label for="txtRolMEliminar">${nombreRol}</label>
+        </div>
+    </form>`
     localStorage.id = id;
 }
 
